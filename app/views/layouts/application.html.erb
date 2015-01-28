@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Pure PvP</title>
+	<%= stylesheet_link_tag 'application', media: 'all' %>
+	<%= javascript_include_tag 'application' %>
+	<%= javascript_include_tag 'https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.2/js/bootstrap.min.js' %>
+	<%= stylesheet_link_tag 'https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.2/css/bootstrap.min.css', media: 'all' %>
+	<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+	<%= csrf_meta_tags %>
+</head>
+
+<body>
+	<%= render 'shared/navbar' %>
+	<%= yield %>
+	<%= render 'shared/footer' %>
+</body>
+</html>
