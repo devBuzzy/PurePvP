@@ -1,15 +1,38 @@
-<h2>Log in</h2>
+<div class="container">
+	<div class="page-header">
+		<h1><strong><i class="fa fa-lock"></i> Log in</strong></h1>
+	</div>
 
-<%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <div class="form-inputs">
-    <%= f.input :email, required: false, autofocus: true %>
-    <%= f.input :password, required: false %>
-    <%= f.input :remember_me, as: :boolean if devise_mapping.rememberable? %>
-  </div>
+	<div class="row">
+		<div class="col-md-6">
+			<%= form_for(:user, as: :user, url: user_session_path) do |f| %>
+			<p class="text-muted">Email Address</p>
+			<%= f.email_field :email, autofocus: true, class: 'form-control', placeholder: 'Email Address' %>
+			<br>
+			<p class="text-muted">Password</p>
+			<%= f.password_field :password, placeholder: 'Password', class: 'form-control' %>
+			<p class="text-muted"><a href="<%= new_password_path(:user) %>">Forgot password</a></p>
+			<%= f.submit 'Log in', class: 'btn btn-primary', id: 'submit' %>
+			<% end %>
+		</div>
 
-  <div class="form-actions">
-    <%= f.button :submit, "Log in" %>
-  </div>
-<% end %>
+		<div class="col-md-6">
+			<div class="sidepanel sidepanel-primary">
+				<h3><strong><i class="fa fa-lock"></i> Security</strong></h3>
+				<p><b>Don't worry, we've got you.</b> Your information will never be shown to ANYONE, including all staff and owners.  Passwords are protected, and should your credentials get into the wrong hands, we can assist you in recovering it.</p>
+			</div>
+			<br/>
+			<div class="sidepanel sidepanel-warning">
+				<h3><strong><i class="fa fa-comments-o"></i> Community</strong></h3>
+				<p><b>Join the conversation</b> When you register on the PurePVP website, you become a member of the community.  We welcome you to chat, have fun and make new friends.</p>
+			</div>
+			<br/>
+			<div class="sidepanel sidepanel-success">
+				<h3><strong><i class="fa fa-money"></i> Free</strong></h3>
+				<p><b>You read that right.</b> Signing up and playing on our servers is 100% free, no payment required.  You'll even get some awesome new features on us.</p>
+			</div>
+		</div>
 
-<%= render "devise/shared/links" %>
+	</div>
+
+</div>

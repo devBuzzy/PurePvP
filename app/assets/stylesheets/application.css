@@ -14,3 +14,19 @@
  *= require 'forem/base'
  *= require_self
  */
+
+#home-carousel .carousel-caption h1 {
+  font-size: 100pt 
+}
+
+#home-carousel .carousel-caption p {
+  padding-top: 30px
+}
+
+.brand {
+	height: 25px;
+}
+
+.navbar-brand .nav-image {
+	padding: 15px 15px 0px 15px !important;
+}

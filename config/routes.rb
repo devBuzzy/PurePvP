@@ -1,6 +1,4 @@
 Rails.application.routes.draw do
-  get 'stats/index'
-
   mount Forem::Engine, :at => '/forums'
   root 'home#index'
   devise_for :users
@@ -9,4 +7,6 @@ Rails.application.routes.draw do
 
   get '/info/terms', to: 'home#terms', as: 'terms'
   get '/info/rules', to: 'home#rules', as: 'rules'
+
+  get '/stats', to: 'stats#index', as: 'stats'
 end
