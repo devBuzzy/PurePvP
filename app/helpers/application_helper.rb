@@ -1,7 +1,7 @@
 module ApplicationHelper
 
   def profile_link(user)
-    link_to user.username, profile_path(user.username), class: 'profile-link'
+    link_to user.username, main_app.profile_path(user.username), class: 'profile-link', style: "color: #{user.get_name_color}"
   end
 
   def latest_post(topic)

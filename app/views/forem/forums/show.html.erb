@@ -50,7 +50,7 @@
               <small class='post-ribbon'>
                 <i class="fa fa-user"></i>
                 <% creator = relevant_posts(topic).first.user %>
-                <%= link_to creator.username, main_app.profile_path(creator.username) %>
+                <%= profile_link(creator) %>
                 <i class="fa fa-folder"></i>
                 <%= link_to topic.forum.name, forem.forum_path(topic.forum) %>
                 <i class="fa fa-calendar-o"></i>
@@ -66,7 +66,7 @@
               <div style="text-align: right;">
                 <% user = relevant_posts(topic).last.user %>
                 <div class='pull-right' style="margin-top: 2px; margin-left: 6px; "><%= avatar(user, :size => 36) %></div>
-                <div class='started-by'><%= link_to user.username, main_app.profile_path(user.username) %></div>
+                <div class='started-by'><%= profile_link(user) %></div>
                 <div class='latest-post'><%= latest_post(topic) %></div>
               </div>
             </td>

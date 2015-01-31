@@ -1,6 +1,6 @@
 class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable
+  :recoverable, :rememberable, :trackable, :validatable
 
   validates :username, presence: true, length: { maximum: 16, minimum: 3 }, uniqueness: true
 
@@ -17,8 +17,18 @@ class User < ActiveRecord::Base
   end
 
   def highest_group
+    forem_groups.order(:priority).first
   end
 
   def get_name_color
+    color ||= highest_group.color
+  end
+
+  def get_badge_color
+    badge_color || highest_group.badge_color
+  end
+
+  def get_badge_text
+    badge_text || highest_group.badge_text
   end
 end
