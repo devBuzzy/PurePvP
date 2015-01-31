@@ -13,10 +13,10 @@
     </div>
     <div id="navbar" class="navbar-collapse collapse navHeaderCollapse">
       <ul class="nav navbar-nav">
-        <li class="active"><a href="<%= main_app.servers_path %>"><i class="fa fa-play"></i> Play</a></li>
-        <li><a href="<%= forem.root_path %>"><i class="fa fa-comments"></i> Forum</a></li>
-        <li><a href="/stats"><i class="fa fa-star"></i> Stats</a></li>
-        <li><a href="<%= main_app.shop_path %>"><i class="fa fa-shopping-cart"></i> Shop</a></li>
+        <li class="<%= active('servers') %>"><a href="<%= main_app.servers_path %>"><i class="fa fa-play"></i> Play</a></li>
+        <li class="<%= active('forums', :forums => true) %>"><a href="<%= forem.root_path %>"><i class="fa fa-comments"></i> Forum</a></li>
+        <li class="<%= active('stats') %>"><a href="/stats"><i class="fa fa-star"></i> Stats</a></li>
+        <li class="<%= active('application', :action => "shop") %>"><a href="<%= main_app.shop_path %>"><i class="fa fa-shopping-cart"></i> Shop</a></li>
         <li><a href="/support"><i class="fa fa-life-ring"></i> Support</a></li>
         <li><a href="/vote"><i class="fa fa-thumbs-up"></i> Vote</a></li></ul>
         <ul class="nav pull-right">
