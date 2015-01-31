@@ -16,8 +16,8 @@ gem 'redis'
 gem 'jbuilder', '2.2.6'
 
 group :production do
-  gem 'unicorn'
-  gem 'mysql2'
+  gem 'passenger'
+  gem 'pg'
 end
 
 group :development do
