@@ -61,3 +61,12 @@ h3 {
 .contents .col-md-10 {
 	padding-left: 0px;
 }
+
+.post-ribbon i {
+	margin-right: 2px;
+	padding-left: 8px;
+}
+
+.post-ribbon a:link, .post-ribbon a:visited, .post-ribbon i {
+	color: #999698;
+}
