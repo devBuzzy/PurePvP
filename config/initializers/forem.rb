@@ -7,6 +7,7 @@ Forem.per_page = 20
 
 Rails.application.config.to_prepare do
   Forem::ApplicationController.layout "application"
+  Forem::Admin::BaseController.layout "application"
 
   # If you want to add your own cancan Abilities to Forem, uncomment and customize the next line:
   # Forem::Ability.register_ability(Ability)

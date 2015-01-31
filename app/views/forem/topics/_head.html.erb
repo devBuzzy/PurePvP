@@ -1,6 +1,22 @@
 <div class='page-header'>
 	<h1>
 		<i class='fa fa-pencil'></i> <%= t('forem.forum.forums') %>
-		<small> <%= forem_emojify(topic.subject) %></small>
+		<small> 
+			<%= forem_emojify(topic.subject) %>
+			<% if topic.locked? %>
+			<span class='fa fa-lock' data-toggle='tooltip' title='This topic is locked to any more replies'></span>
+			<% end %>
+			<% if topic.pinned? %>
+			<span class='fa fa-thumb-tack' data-toggle='tooltip' title='This topic is stickied'>></span>
+			<% end %>
+			<% if topic.hidden? %>
+			<span class='fa fa-eye-slash' data-toggle='tooltip' title='This topic is visible to staff only'></span>
+			<% end %>
+			<% if forem_user && view = topic.view_for(forem_user) %>
+			<% if topic.posts.exists?(["created_at > ?", view.updated_at]) %>
+			<span class='new_posts icon'>new</span>
+			<% end %>
+			<% end %>
+		</small>
 	</h1>
 </div>

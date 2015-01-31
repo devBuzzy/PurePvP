@@ -8,7 +8,7 @@
           <% if post.user.is_a?(Forem::NilUser) %>
           <%= t(:deleted) %>
           <% else %>
-          <%= link_to post.user.forem_name, main_app.profile_path(post.user) %>
+          <%= link_to post.user.forem_name, main_app.profile_path(post.user.username) %>
           <% end %>
         </div>
       </div>

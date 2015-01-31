@@ -1,3 +1,13 @@
-<h2><%= t("forem.topic.edit", :subject => @topic.subject) %></h2>
-
-<%= render "form" %>
+<div class='container'>
+	<div class='row'>
+		<div class='page-header'>
+			<h1><%= t("forem.topic.edit", :subject => @topic.subject) %></h1>
+		</div>
+		<div class='col-md-2'>
+			<%= render '/forem/admin/base/side' %>
+		</div>
+		<div class='col-md-10'>
+			<%= render "form" %>
+		</div>
+	</div>
+</div>

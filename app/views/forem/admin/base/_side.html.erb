@@ -1,0 +1,7 @@
+<h3><%= t('Admin') %></h3>
+<ul class="nav nav-pills nav-stacked">
+	<li role='presentation'><%= link_to t('forem.admin.forum.index'), forem.admin_forums_path %></li>
+	<li role='presentation'><%= link_to t('forem.admin.category.index'), forem.admin_categories_path %></li>
+	<li role='presentation'><%= link_to t('forem.admin.group.index'), forem.admin_groups_path %></li>
+	<li role='presentation'><%= link_to t(:back_to_forums, :scope => 'forem.admin'), forem.root_path %></li>
+</ul>

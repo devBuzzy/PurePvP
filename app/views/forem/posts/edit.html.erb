@@ -1,8 +1,42 @@
-<%= render :partial => 'forem/forums/head', :locals => { :forum => @topic.forum } %>
+<div class='container'>
 
-<h2><%= t("forem.post.edit", :post => @post) %></h2>
+	<%= render :partial => 'forem/forums/head', :locals => { :forum => @topic.forum } %>
 
-<%= simple_form_for [forem, @topic.forum, @topic, @post] do |f| %>
-  <%= render :partial => "form", :locals => { :f => f } %>
-  <%= f.submit t("forem.post.buttons.edit"), :class => "btn btn-primary" %>
-<% end %>
+	<div class='row'>
+		<div class='col-md-2'>
+			<%= render '/forem/forums/side' %>
+		</div>
+		<div class='col-md-10'>
+			<div role="tabpanel">
+
+				<ul class="nav nav-tabs" role="tablist">
+					<li role="presentation" class="active"><a href="#reply" aria-controls="reply" role="tab" data-toggle="tab">Edit</a></li>
+					<% if params[:reply_to_id] %>
+					<li role="presentation"><a href="#original" aria-controls="original" role="tab" data-toggle="tab">Original Content</a></li>
+					<% end %>
+				</ul>
+
+				<div class="tab-content">
+					<div role="tabpanel" class="tab-pane active" id="reply">
+						<%= simple_form_for [forem, @topic.forum, @topic, @post] do |f| %>
+						<p>
+							<%= render :partial => "form", :locals => { :f => f } %>
+						</p>
+						<p>
+							<%= f.submit t("forem.post.buttons.save"), :class => "btn btn-primary" %>
+						</p>
+						<% end %>
+					</div>
+					<% if params[:reply_to_id] %>
+					<div role="tabpanel" class="tab-pane" id="original">
+						<div class='original-post' style='padding-top: 20px;'>
+							<%= render :partial => "forem/posts/post", locals: { :post => Forem::Post.find(params[:reply_to_id]), post_counter: 1, hide_ribbon: true } %>
+						</div>
+					</div>
+					<% end %>
+				</div>
+
+			</div>
+		</div>
+	</div>
+</div>
