@@ -3,7 +3,7 @@
 
     <div class='contents'>
       <div class='user col-md-2'>
-        <div class='icon'><%= avatar(post.user, :size => 100) %></div>
+        <div class='icon' align='center'><%= avatar(post.user, :size => 100) %></div>
         <div class='username' align='center'>
           <% if post.user.is_a?(Forem::NilUser) %>
           <%= t(:deleted) %>
@@ -35,10 +35,8 @@
   </div>
 </div>
 <% if forem_user %>
-<div class='row post-ribbon'>
-  <div class='col-md-2'>
-  </div>
-  <div class='col-md-10'>
+<div class='row-fluid post-ribbon'>
+  <div class='col-md-10 col-md-offset-2'>
     <i class='fa fa-calendar-o'></i><%= link_to post_time_tag(post), forem.forum_topic_path(post.topic.forum, post.topic, anchor: 'post-' + post.id.to_s, pagination_param => post.topic.last_page) %>
     <% unless !defined?(hide_ribbon).nil? %>
     <% if can?(:reply, post.topic) %>
@@ -58,4 +56,5 @@
   </div>
 </div>
 <% end %>
+<br>
 <hr>

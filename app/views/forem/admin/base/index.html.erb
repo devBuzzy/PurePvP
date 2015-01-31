@@ -1,16 +1,10 @@
-<h1><%= t('forem.admin.area') %></h1>
-
-<p>
-  <%= t('forem.admin.welcome') %>
-</p>
-
-<ul>
-  <li><%= link_to t('forem.admin.forum.index'), forem.admin_forums_path %> </li>
-  <li><%= link_to t('forem.admin.category.index'), forem.admin_categories_path %></li>
-  <li><%= link_to t('forem.admin.group.index'), forem.admin_groups_path %></li>
-</ul>
-
-<br>
-<footer id='admin_link'>
-  <%= link_to t(:back_to_forums, :scope => 'forem.admin'), forem.root_path %> 
-</footer>
+<div class='row'>
+	<div class='page-header'>
+		<h1>Admin Panel <small>Forums</small></h1>
+	</div>
+	<div class='col-md-2'>
+		<%= render 'side' %>
+	</div>
+	<div class='col-md-10'>
+	</div>
+</div>

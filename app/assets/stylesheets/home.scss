@@ -71,8 +71,10 @@ h3 {
 	padding-left: 0px;
 }
 
-.post-ribbon a:link, .post-ribbon a:visited, .post-ribbon i {
-	color: #999698;
+.post-ribbon a:link, .post-ribbon a:visited, .post-ribbon i, 
+.started-by a:link, .started-by a:visited, 
+.latest-post a:link, .latest-post a:visited {
+	color: #787878;
 }
 
 blockquote.reply-to {

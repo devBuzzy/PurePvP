@@ -6,7 +6,7 @@
 	<div class="row">
 		<div class="col-md-6">
 			<%= form_for(:user, as: :user, url: user_registration_path) do |f| %>
-			<%= render 'shared/errors', object: resouce %>
+			<%= render 'shared/errors', object: resource %>
 			<label class="text-muted">Email Address</label>
 			<%= f.email_field :email, autofocus: true, class: 'form-control', placeholder: 'Email Address' %>
 			<label class="text-muted">Username</label>

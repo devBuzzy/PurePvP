@@ -1,7 +1,7 @@
 <%= simple_form_for [forem, :admin, @topic.forum, @topic] do |f| %>
   <%= f.input :subject, input_html: { class: 'form-control' } %>
   <br />
-  <%= f.association :forum , :label => "Forum" %>
+  <%= f.association :forum , :label => "Forum", input_html: { class: 'form-control' } %>
   <br />
   <%= f.label :locked %>
   <%= f.check_box :locked %>

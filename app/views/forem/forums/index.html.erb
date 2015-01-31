@@ -1,81 +1,77 @@
-<div class="container">
-	<div class="page-header">
-		<h1><strong><i class="fa fa-pencil"></i> <%= t('.title') %></strong><small> <%= t('.community_discussion') %></small></h1>
-	</div>
-	<div class="row">
-		<div class="col-md-2">
-			<%= render '/forem/forums/side' %>
-		</div>
-		<div class="col-md-10">
-			<h1>Latest Discussions</h1>
-			<hr>
-			<div id='topics_container'>
-				<table class='topics table-striped table' cellspacing='0'>
-					<thead>
-						<tr>
-							<th class="byline"><%= t('forem.topic.headings.topic') -%></th>
-							<th class="topic-stats text-center"><%= t('forem.topic.headings.stats') -%></th>
-							<th class="latest-post pull-right"><%= t('forem.topic.headings.latest') -%></th>
-						</tr>
-					</thead>
-					<tbody>
-						<% Forem::Topic.where(:locked => false).where(:pinned => false).where(:hidden => false).each do |topic| %>
-						<tr class="topic <%= cycle('odd', 'even') %> <%= topic.locked? ? 'locked' : 'unlocked' %>">
-							<td class='byline'>
-								<%= new_since_last_view_text(topic) %>
-								<div class='subject'>
-									<%= link_to forem_emojify(topic.subject), forem.forum_topic_path(topic.forum, topic) %>
-									<% if topic.locked? %>
-									<span class='lock icon'></span>
-									<% end %>
-									<% if topic.pinned? %>
-									<span class='pin icon'></span>
-									<% end %>
-									<% if topic.hidden? %>
-									<span class='hidden icon'></span>
-									<% end %>
-									<% if forem_user && view = topic.view_for(forem_user) %>
-									<% if topic.posts.exists?(["created_at > ?", view.updated_at]) %>
-									<span class='new_posts icon'>new</span>
-									<% end %>
-									<% end %>
-								</div>
-								<small>
-									<span class='topic-author'>
-										<i class="fa fa-user"></i>
-										<% creator = relevant_posts(topic).first.user %>
-										<%= link_to creator.username, main_app.profile_path(creator.username) %>
-									</span>
-									<span class='topic-forum' style='margin-left: 3px;'>
-										<i class="fa fa-folder"></i>
-										<%= topic.forum.name %>
-									</span>
-								</small>
-							</td>
-							<td class='views-count text-center'>
-								<%= pluralize(relevant_posts(topic).count, 'reply') %>
-								<br>
-								<%= pluralize(topic.views_count, 'view') %>
-							</td>
-							<td class='latest-post'>
-								<div style="text-align: right;">
-									<% user = relevant_posts(topic).last.user %>
-									<div class='pull-right' style="margin-top: 2px; margin-left: 6px; "><%= avatar(user, :size => 36) %></div>
-									<div class='subject'><%= link_to user.username, main_app.profile_path(user.username) %></div>
-									<div class='started-by'><%= latest_post(topic) %></div>
-								</div>
-							</td>
-						</tr>
-						<% end %>
-					</tbody>
-				</table>
-
-			</div>
-		</div>
-	</div>
-	<footer id='admin_link'>
-		<% if forem_admin? %>
-		<%= link_to t("area", :scope => "forem.admin"), forem.admin_root_path %>
-		<% end %>
-	</footer>
+<div class="page-header">
+	<h1><strong><i class="fa fa-pencil"></i> <%= t('.title') %></strong><small> <%= t('.community_discussion') %></small></h1>
 </div>
+<div class="row">
+	<div class="col-md-2">
+		<%= render '/forem/forums/side' %>
+	</div>
+	<div class="col-md-10">
+		<h1>Latest Discussions</h1>
+		<hr>
+		<div id='topics_container'>
+			<table class='topics table-striped table' cellspacing='0'>
+				<thead>
+					<tr>
+						<th class="byline"><%= t('forem.topic.headings.topic') -%></th>
+						<th class="topic-stats text-center"><%= t('forem.topic.headings.stats') -%></th>
+						<th class="latest-post pull-right"><%= t('forem.topic.headings.latest') -%></th>
+					</tr>
+				</thead>
+				<tbody>
+					<% Forem::Topic.where(:locked => false).where(:pinned => false).where(:hidden => false).each do |topic| %>
+					<tr class="topic <%= cycle('odd', 'even') %> <%= topic.locked? ? 'locked' : 'unlocked' %>">
+						<td class='byline'>
+							<%= new_since_last_view_text(topic) %>
+							<div class='subject'>
+								<%= link_to forem_emojify(topic.subject), forem.forum_topic_path(topic.forum, topic) %>
+								<% if topic.locked? %>
+								<span class='lock icon'></span>
+								<% end %>
+								<% if topic.pinned? %>
+								<span class='pin icon'></span>
+								<% end %>
+								<% if topic.hidden? %>
+								<span class='hidden icon'></span>
+								<% end %>
+								<% if forem_user && view = topic.view_for(forem_user) %>
+								<% if topic.posts.exists?(["created_at > ?", view.updated_at]) %>
+								<span class='new_posts icon'>new</span>
+								<% end %>
+								<% end %>
+							</div>
+							<small class='post-ribbon'>
+								<i class="fa fa-user"></i>
+								<% creator = relevant_posts(topic).first.user %>
+								<%= link_to creator.username, main_app.profile_path(creator.username) %>
+								<i class="fa fa-folder"></i>
+								<%= link_to topic.forum.name, forem.forum_path(topic.forum) %>
+								<i class="fa fa-calendar-o"></i>
+								<%= link_to time_ago_in_words(topic.created_at) + ' ago', forem.forum_topic_path(topic.forum, topic) %>
+							</small>
+						</td>
+						<td class='views-count text-center'>
+							<%= pluralize(relevant_posts(topic).count, 'reply') %>
+							<br>
+							<%= pluralize(topic.views_count, 'view') %>
+						</td>
+						<td class='latest-post'>
+							<div style="text-align: right;">
+								<% user = relevant_posts(topic).last.user %>
+								<div class='pull-right' style="margin-top: 2px; margin-left: 6px; "><%= avatar(user, :size => 36) %></div>
+								<div class='started-by'><%= link_to user.username, main_app.profile_path(user.username) %></div>
+								<div class='latest-post'><%= latest_post(topic) %></div>
+							</div>
+						</td>
+					</tr>
+					<% end %>
+				</tbody>
+			</table>
+
+		</div>
+	</div>
+</div>
+<footer id='admin_link'>
+	<% if forem_admin? %>
+	<%= link_to t("area", :scope => "forem.admin"), forem.admin_root_path %>
+	<% end %>
+</footer>

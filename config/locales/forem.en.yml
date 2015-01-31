@@ -130,13 +130,13 @@ en:
       not_found: The topic you are looking for could not be found.
       hidden:
         'true': This topic is now hidden.
-        'false': This topic is now visible.
+        'False': This topic is now visible.
       locked:
         'true': This topic is now locked.
-        'false': This topic is now unlocked.
+        'False': This topic is now unlocked.
       pinned:
         'true': This topic is now pinned.
-        'false': This topic is now unpinned.
+        'False': This topic is now unpinned.
     topics:
       show:
         reply: Reply

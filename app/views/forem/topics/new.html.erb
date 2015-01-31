@@ -1,18 +1,16 @@
-<div class='container'>
+<div class='row'>
 	<%= render :partial => 'forem/forums/head', :locals => { :forum => @topic.forum } %>
-	<div class='row'>
-		<div class='col-md-2'>
-			<%= render '/forem/forums/side' %>
-		</div>
-		<div class='col-md-10'>
-			<div role="tabpanel">
-				<ul class="nav nav-tabs" role="tablist">
-					<li role="presentation" class="active"><a href="#topic" aria-controls="topic" role="tab" data-toggle="tab">New Topic</a></li>
-				</ul>
-				<div class="tab-content">
-					<div role="tabpanel" class="tab-pane active" id="topic">
-						<%= render :partial => "form" %>
-					</div>
+	<div class='col-md-2'>
+		<%= render '/forem/forums/side' %>
+	</div>
+	<div class='col-md-10'>
+		<div role="tabpanel">
+			<ul class="nav nav-tabs" role="tablist">
+				<li role="presentation" class="active"><a href="#topic" aria-controls="topic" role="tab" data-toggle="tab">New Topic</a></li>
+			</ul>
+			<div class="tab-content">
+				<div role="tabpanel" class="tab-pane active" id="topic">
+					<%= render :partial => "form" %>
 				</div>
 			</div>
 		</div>

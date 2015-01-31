@@ -26,7 +26,17 @@
 
 <body>
 	<%= render 'shared/navbar' %>
-	<%= yield %>
+	<% if params[:controller] == 'home' && params[:action] == 'index' %>
+	<%= render 'shared/home' %>
+	<% end %>
+	<div class='container'>
+		<% if alert || notice %>
+		<div class='notices' style='padding-top: 50px;'>
+			<%= render 'shared/alerts' %>
+		</div>
+		<% end %>
+		<%= yield %>
+	</div>
 	<%= render 'shared/footer' %>
 </body>
 </html>

@@ -1,29 +1,33 @@
-<h2><%= t('forem.admin.group.members', :group => forem_emojify(@group.name)) %></h2>
-<%= link_to t('back_to_groups', :scope => "forem.admin"), admin_groups_path %>
-<div class="row">
-  <h3><%= t('.add_a_new_member') %></h3>
-  <%= form_tag add_admin_group_members_url(@group) do %>
-    <p>
-      <%= text_field_tag "user_id" %>
-    </p>
-    <p class="col-md-1">
+<div class='row'>
+  <div class='page-header'>
+    <h1>Admin Panel <small><%= t('forem.admin.group.members', :group => forem_emojify(@group.name)) %></small></h1>
+  </div>
+  <div class='col-md-2'>
+    <%= render '/forem/admin/base/side' %>
+  </div>
+  <div class='col-md-10'>
+    <h3><%= t('.add_a_new_member') %></h3>
+    <%= form_tag add_admin_group_members_url(@group), class: 'form-inline' do %>
+    <div class='form-group'>
+      <%= text_field_tag "user_id", nil, class: 'form-control' %>
       <%= submit_tag t(".add_member"), :class => "btn btn-primary" %>
-    </p>
-  <% end %>
-</div>
+    </div>
+    <% end %>
 
-<% if @group.members.any? %>
-  <h3><%= t('.current_members') %></h3>
-  <div class="row">
+    <% if @group.members.any? %>
+    <h3><%= t('.current_members') %></h3>
     <ul id='members'>
       <% @group.members.each do |member| %>
-        <li><%= member.forem_name %> |
-          <%= link_to t('forem.admin.groups.show.remove_member'), admin_group_member_url(@group, member),
-                      method: :delete, data: { confirm: t('are_you_sure') } %></li>
+      <li>
+        <%= member.forem_name %> |
+        <%= link_to t('forem.admin.groups.show.remove_member'), admin_group_member_url(@group, member),
+        method: :delete, data: { confirm: t('are_you_sure') } %>
+      </li>
       <% end %>
     </ul>
+    <% end %>
   </div>
-<% end %>
+</div>
 
 
 <script>
