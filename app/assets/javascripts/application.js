@@ -14,4 +14,5 @@
 //= require jquery_ujs
 //= require forem
 //= require features
+//= require bootstrap-markdown/js/bootstrap-markdown
 //= require_tree .

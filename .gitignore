@@ -9,3 +9,6 @@
 /log/*
 !/log/.keep
 /tmp
+
+node_modules/
+vendor/assets/components/

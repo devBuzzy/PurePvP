@@ -1,0 +1,27 @@
+{
+  "name": "PurePvP",
+  "version": "0.0.1",
+  "homepage": "https://github.com/Jake0oo0/PurePvP",
+  "authors": [
+    "Jake <jake0oo0dev@gmail.com>"
+  ],
+  "description": "Website for the Pure PvP Minecraft server",
+  "keywords": [
+    "minecraft",
+    "purepvp",
+    "forums",
+    "website"
+  ],
+  "license": "All Rights Reserved",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "vendor/assets/components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap-markdown": "~2.8.0"
+  }
+}

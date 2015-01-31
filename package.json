@@ -1,0 +1,29 @@
+{
+  "name": "PurePvP",
+  "version": "0.0.1",
+  "description": "Website for the Pure PvP Minecraft server",
+  "main": "bin/rails",
+  "scripts": {
+    "postinstall": "bower install"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Jake0oo0/PurePvP.git"
+  },
+  "keywords": [
+    "minecraft",
+    "purepvp",
+    "pvp",
+    "website",
+    "forums"
+  ],
+  "author": "Jake0oo0 <jake0oo0dev@gmail.com>",
+  "license": "All Rights Reserved",
+  "bugs": {
+    "url": "https://github.com/Jake0oo0/PurePvP/issues"
+  },
+  "homepage": "https://github.com/Jake0oo0/PurePvP",
+  "dependencies": {
+    "bower": "^1.3.12"
+  }
+}

@@ -9,4 +9,7 @@ Rails.application.routes.draw do
   get '/info/rules', to: 'home#rules', as: 'rules'
 
   get '/stats', to: 'stats#index', as: 'stats'
+  get '/shop', to: 'application#shop', as: 'shop'
+
+  get '/users/:username', to: 'application#profile', as: 'profile'
 end

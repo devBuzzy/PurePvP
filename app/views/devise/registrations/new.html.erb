@@ -1,17 +1,40 @@
-<h2>Sign up</h2>
+<div class="container">
+	<div class="page-header">
+		<h1><strong><i class="fa fa-lock"></i> Register</strong></h1>
+	</div>
 
-<%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= f.error_notification %>
+	<div class="row">
+		<div class="col-md-6">
+			<%= form_for(:user, as: :user, url: user_registration_path) do |f| %>
+			<%= render 'shared/errors', object: resouce %>
+			<label class="text-muted">Email Address</label>
+			<%= f.email_field :email, autofocus: true, class: 'form-control', placeholder: 'Email Address' %>
+			<label class="text-muted">Username</label>
+			<%= f.text_field :username, class: 'form-control', placeholder: 'Minecraft Username' %>
+			<label class="text-muted">Password</label>
+			<%= f.password_field :password, placeholder: 'Password', class: 'form-control' %>
+			<label class="text-muted">Confirm Password</label> 
+			<%= f.password_field :password_confirmation, placeholder: 'Confirm Password', class: 'form-control' %>
+			<p class="text-muted"><a href="<%= new_password_path(:user) %>">forgot login?</a></p>
+			<%= f.submit 'Register', class: 'btn btn-primary', id: 'submit' %>
+			<% end %>
+		</div>
 
-  <div class="form-inputs">
-    <%= f.input :email, required: true, autofocus: true %>
-    <%= f.input :password, required: true, hint: ("#{@minimum_password_length} characters minimum" if @validatable) %>
-    <%= f.input :password_confirmation, required: true %>
-  </div>
-
-  <div class="form-actions">
-    <%= f.button :submit, "Sign up" %>
-  </div>
-<% end %>
-
-<%= render "devise/shared/links" %>
+		<div class="col-md-6">
+			<div class="sidepanel sidepanel-primary">
+				<h3><strong><i class="fa fa-lock"></i> Security</strong></h3>
+				<p><b>Don't worry, we've got you.</b> Your information will never be shown to ANYONE, including all staff and owners.  Passwords are protected, and should your credentials get into the wrong hands, we can assist you in recovering it.</p>
+			</div>
+			<br/>
+			<div class="sidepanel sidepanel-warning">
+				<h3><strong><i class="fa fa-comments-o"></i> Community</strong></h3>
+				<p><b>Join the conversation</b> When you register on the PurePVP website, you become a member of the community.  We welcome you to chat, have fun and make new friends.</p>
+			</div>
+			<br/>
+			<div class="sidepanel sidepanel-success">
+				<h3><strong><i class="fa fa-money"></i> Free</strong></h3>
+				<p><b>You read that right.</b> Signing up and playing on our servers is 100% free, no payment required.  You'll even get some awesome new features on us.</p>
+			</div>
+		</div>
+	</div>
+</div>

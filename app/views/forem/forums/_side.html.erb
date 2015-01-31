@@ -1,0 +1,13 @@
+<h3><%= t('home') %></h3>
+<ul class="nav nav-pills nav-stacked">
+	<li role="presentation"><a href=<%= forem.root_path %>><%= t('latest') %></a></li>
+</ul>
+
+<% Forem::Category.all.each do |category| %>
+<h3><%= category.name %></h3>
+<% category.forums.each do |forum| %>
+<ul class="nav nav-pills nav-stacked">
+	<li role="presentation"><a href=<%= forem.forum_path(forum) %>><%= forem_emojify(forum.title) %></a></li>
+</ul>
+<% end %>
+<% end %>
