@@ -1,5 +1,6 @@
 <%= simple_form_for [forem, :admin, @category] do |f| %>
   <%= f.input :name, input_html: { class: 'form-control' } %>
   <%= f.input :position, input_html: { class: 'form-control' } %>
+  <br>
   <%= f.submit :class => "btn btn-primary" %>
 <% end %>

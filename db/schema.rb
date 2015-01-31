@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150128014739) do
+ActiveRecord::Schema.define(version: 20150131162538) do
 
   create_table "forem_categories", force: :cascade do |t|
     t.string   "name",                   null: false
@@ -35,7 +35,11 @@ ActiveRecord::Schema.define(version: 20150128014739) do
   add_index "forem_forums", ["slug"], name: "index_forem_forums_on_slug", unique: true
 
   create_table "forem_groups", force: :cascade do |t|
-    t.string "name"
+    t.string  "name"
+    t.string  "color"
+    t.string  "badge_text"
+    t.string  "badge_color"
+    t.integer "priority"
   end
 
   add_index "forem_groups", ["name"], name: "index_forem_groups_on_name"
@@ -141,6 +145,9 @@ ActiveRecord::Schema.define(version: 20150128014739) do
     t.time     "first_join"
     t.time     "last_join"
     t.time     "last_seen"
+    t.string   "color"
+    t.string   "badge_text"
+    t.string   "badge_color"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true

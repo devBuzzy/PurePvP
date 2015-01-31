@@ -15,4 +15,6 @@
 //= require forem
 //= require features
 //= require bootstrap-markdown/js/bootstrap-markdown
+//= require jquery.minicolors
+//= require jquery.minicolors.simple_form
 //= require_tree .

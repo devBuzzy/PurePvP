@@ -9,6 +9,7 @@ gem 'jquery-rails'
 
 gem 'devise'
 gem 'forem', :github => "radar/forem", :branch => "rails4"
+gem 'jquery-minicolors-rails'
 gem 'kaminari'
 gem 'redis'
 

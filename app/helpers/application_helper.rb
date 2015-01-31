@@ -1,12 +1,7 @@
 module ApplicationHelper
-  def avatar(user, options={})
-    image = crafatar_url(user, options)
-    image_tag image, :alt => "Avatar", class: 'avatar'
-  end
 
-  def crafatar_url(user, options = {})
-    options[:size] ||= 60
-    "https://crafatar.com/avatars/#{user.uuid || 'notch'}?size=#{options[:size]}&helm"
+  def profile_link(user)
+    link_to user.username, profile_path(user.username), class: 'profile-link'
   end
 
   def latest_post(topic)

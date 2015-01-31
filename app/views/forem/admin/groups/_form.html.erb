@@ -1,5 +1,13 @@
 <%= simple_form_for([forem, :admin, @group]) do |f| %>
-  <%= f.input :name, input_html: { class: 'form-control' } %>
-  <br>
-  <%= f.submit :class => "btn btn-primary" %>
+<%= f.input :name, input_html: { class: 'form-control' } %>
+<br>
+<%= f.input :priority, input_html: { class: 'form-control' }  %>
+<br>
+<%= f.input :color, as: :minicolors, input_html: { class: 'form-control', data: { minicolors: {theme: :bootstrap, position: :right,}}} %>
+<br>
+<%= f.input :badge_color, as: :minicolors, input_html: { class: 'form-control', data: { minicolors: {theme: :bootstrap, position: :right,}}} %>
+<br>
+<%= f.input :badge_text, input_html: { class: 'form-control' }  %>
+<br>
+<%= f.submit :class => "btn btn-primary" %>
 <% end %>
