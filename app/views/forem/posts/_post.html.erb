@@ -1,68 +1,61 @@
 <div class="row" id="post-<%= post.id.to_s %>">
   <div id='post_<%= post_counter + 1 %>' class='post <%= cycle('odd', 'even') -%> col-md-12'>
-<!--     <% if post.pending_review? %>
-      <div class='moderation alert'>
-        <%= t(".pending_review") %>
-        <% if forem_admin_or_moderator?(post.topic.forum) %>
-          <% if local_assigns[:mass_moderation] %>
-            <%= render "/forem/posts/moderation_tools", :post => post %>
+
+    <div class='contents'>
+      <div class='user col-md-2'>
+        <div class='icon'><%= avatar(post.user, :size => 100) %></div>
+        <div class='username' align='center'>
+          <% if post.user.is_a?(Forem::NilUser) %>
+          <%= t(:deleted) %>
           <% else %>
-            <%= form_tag forem.forum_moderate_posts_path(post.topic.forum), :method => :put do %>
-              <%= render "/forem/posts/moderation_tools", :post => post %>
-            <% end %>
+          <%= link_to post.user.forem_name, main_app.profile_path(post.user) %>
           <% end %>
+        </div>
+      </div>
+
+      <div class='contents col-md-10'>
+        <% if post.reply_to %>
+        <blockquote class='reply-to'>
+          <% reply_to = post.reply_to %>
+          <div class="collapse" id="quote-<%= post.id %>">
+            <p>
+              <%= forem_format(reply_to.text) %>
+            </p>
+          </div>
+          <a data-toggle="collapse" data-target="#quote-<%= post.id %>" style='cursor: pointer;'>
+            <small><%= t("forem.post.in_reply_to") %> <%= reply_to.user.username %></small>
+          </a>
+        </blockquote>
         <% end %>
-      </div>
-      <% end %> -->
+        <%= forem_format(post.text) %>
 
-      <div class='contents'>
-        <div class='user col-md-2'>
-          <div class='icon'><%= avatar(post.user, :size => 100) %></div>
-          <div class='username' align='center'>
-            <% if post.user.is_a?(Forem::NilUser) %>
-            <%= t(:deleted) %>
-            <% else %>
-            <%= link_to post.user.forem_name, main_app.profile_path(post.user) %>
-            <% end %>
-          </div>
-        </div>
 
-        <div class='contents col-md-10'>
-          <%= forem_format(post.text) %>
-
-          <% if post.reply_to %>
-          <div class='in-reply-to'>
-            <%= link_to "#{t("forem.post.in_reply_to")} #{post.reply_to.user.forem_name}", "#post-#{post.reply_to.id}" %>
-          </div>
-          <% end %>
-
-        </div>
       </div>
     </div>
   </div>
-  <% if forem_user %>
-  <div class='row post-ribbon'>
-    <div class='col-md-2'>
-    </div>
-    <div class='col-md-10'>
-      <i class='fa fa-calendar-o'></i><%= link_to post_time_tag(post), forem.forum_topic_path(post.topic.forum, post.topic, anchor: 'post-' + post.id.to_s, pagination_param => post.topic.last_page) %>
-      <% unless !defined?(hide_ribbon).nil? %>
-      <% if can?(:reply, post.topic) %>
-      <% if post.topic.can_be_replied_to? %>
-      <i class='fa fa-comment-o'></i><%= link_to t('reply', :scope => 'forem.topic'), forem.new_forum_topic_post_path(post.forum, post.topic, :reply_to_id => post.id), :"data-toggle" => 'tooltip', title: 'Reply to this post as a quote' %>
-      <% end %>
-      <% end %>
-      <% if post.owner_or_admin?(forem_user) %>
-      <% if can?(:edit_post, post.topic.forum) %>
-      <i class='fa fa-pencil'></i><%= link_to t('edit', :scope => 'forem.buttons.post'), forem.edit_forum_topic_post_path(post.forum, post.topic, post), title: 'Edit this post', :"data-toggle" => 'tooltip' %>
-      <% end %>
-      <% if can?(:destroy_post, post.topic.forum) %>
-      <i class='fa fa-trash-o'></i><%= link_to t('delete', :scope => 'forem.topic'), forem.forum_topic_post_path(post.forum, post.topic, post), :method => :delete, data: { :confirm => t("are_you_sure") }, :"data-toggle" => 'tooltip', title: 'Delete this post' %>
-      <% end %>
-      <% end %>
-      <% end %>
-    </div>
-  </div>
-  <% end %>
 </div>
+<% if forem_user %>
+<div class='row post-ribbon'>
+  <div class='col-md-2'>
+  </div>
+  <div class='col-md-10'>
+    <i class='fa fa-calendar-o'></i><%= link_to post_time_tag(post), forem.forum_topic_path(post.topic.forum, post.topic, anchor: 'post-' + post.id.to_s, pagination_param => post.topic.last_page) %>
+    <% unless !defined?(hide_ribbon).nil? %>
+    <% if can?(:reply, post.topic) %>
+    <% if post.topic.can_be_replied_to? %>
+    <i class='fa fa-comment-o'></i><%= link_to t('reply', :scope => 'forem.topic'), forem.new_forum_topic_post_path(post.forum, post.topic, :reply_to_id => post.id), :"data-toggle" => 'tooltip', title: 'Reply to this post as a quote' %>
+    <% end %>
+    <% end %>
+    <% if post.owner_or_admin?(forem_user) %>
+    <% if can?(:edit_post, post.topic.forum) %>
+    <i class='fa fa-pencil'></i><%= link_to t('edit', :scope => 'forem.buttons.post'), forem.edit_forum_topic_post_path(post.forum, post.topic, post), title: 'Edit this post', :"data-toggle" => 'tooltip' %>
+    <% end %>
+    <% if can?(:destroy_post, post.topic.forum) %>
+    <i class='fa fa-trash-o'></i><%= link_to t('delete', :scope => 'forem.topic'), forem.forum_topic_post_path(post.forum, post.topic, post), :method => :delete, data: { :confirm => t("are_you_sure") }, :"data-toggle" => 'tooltip', title: 'Delete this post' %>
+    <% end %>
+    <% end %>
+    <% end %>
+  </div>
+</div>
+<% end %>
 <hr>
