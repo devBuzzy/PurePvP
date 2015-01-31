@@ -1,0 +1,19 @@
+<div class='row'>
+	<div class='page-header'>
+		<%= link_to 'Cancel', reports_path, class: 'btn btn-danger pull-right' %>
+		<h1><i class='fa fa-pencil'></i> New Ticket</h1>
+	</div>
+	<div class='col-md-6'>
+		<%= render 'form' %>
+	</div>
+	<div class="col-md-6">
+		<div class="sidepanel sidepanel-primary">
+			<h3><strong><i class="fa fa-lightbulb-o"></i> False Tickets</strong></h3>
+			<p><b>Be warned!</b> Abusing the ticket system may result in consequences for wasting staff time, and causing unnecessary confusion. Please be considerate of the time that goes into completing tickets, and do not abuse the system. Thank you.</p>
+		</div>
+		<div class="sidepanel sidepanel-primary">
+			<h3><strong><i class="fa fa-clock-o"></i> Response Times</strong></h3>
+			<p><b>Please wait!</b> The Pure PvP staff work as efficiently as possible to complete your ticket as soon as possible, but it may take up to 48 hours for your ticket to be completed. Please wait up to that long before contacting support.</p>
+		</div>
+	</div>
+</div>

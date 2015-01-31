@@ -1,0 +1,42 @@
+<div class='row'>
+	<div class='page-header'>
+		<div class="btn-group pull-right">
+			<%= link_to 'New Ticket', new_report_path, class: 'btn btn-primary' %>
+			<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+				Sort <span class="caret"></span>
+			</button>
+			<ul class="dropdown-menu" role="menu">
+				<li><%= link_to 'All', reports_path(sort: 'all') %></li>
+				<li><%= link_to 'Closed', reports_path(sort: 'closed') %></li>
+				<li><%= link_to 'Open', reports_path(sort: 'open') %></li>
+			</ul>
+		</div>
+		<h1><i class='fa fa-flag'></i> Support Tickets</h1>
+	</div>
+	<% if @reports.any? %>
+	<table class='table table-striped'>
+		<thead>
+			<th>ID</th>
+			<th>Status</th>
+			<th>Reporter</th>
+			<th>Reported</th>
+			<th>Last Updated</th>
+			<th></th>
+		</thead>
+		<tbody>
+			<% @reports.each do |report| %>
+			<tr>
+				<td><%= link_to report.id, report_path(report) %></td>
+				<td><%= report.closed ? 'Closed' : 'Open' %></td>
+				<td><%= profile_link(report.reporter) %></td>
+				<td><%= time_ago_in_words(report.created_at) + ' ago' %></td>
+				<td><%= time_ago_in_words(report.updated_at) + ' ago' %></td>
+				<td><%= link_to 'View', report_path(report) %></td>
+			</tr>
+			<% end %>
+		</tbody>
+	</table>
+	<% else %>
+	<div class='none text-muted' align='center'>No reports found.</div>
+	<% end %>
+</div>

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150131162538) do
+ActiveRecord::Schema.define(version: 20150131194124) do
 
   create_table "forem_categories", force: :cascade do |t|
     t.string   "name",                   null: false
@@ -113,6 +113,15 @@ ActiveRecord::Schema.define(version: 20150131162538) do
   add_index "forem_views", ["updated_at"], name: "index_forem_views_on_updated_at"
   add_index "forem_views", ["user_id"], name: "index_forem_views_on_user_id"
   add_index "forem_views", ["viewable_id"], name: "index_forem_views_on_viewable_id"
+
+  create_table "reports", force: :cascade do |t|
+    t.integer  "reporter_id"
+    t.text     "reason"
+    t.text     "evidence"
+    t.boolean  "closed"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "servers", force: :cascade do |t|
     t.string   "name"

@@ -1,0 +1,13 @@
+<%= form_for @report do |f| %>
+<p>
+	<%= f.label :reason %>
+	<%= f.text_area :reason, class: 'form-control' %>
+</p>
+<p>
+	<%= f.label :evidence, 'Additional Evidence/Information' %>
+	<%= f.text_area :evidence, class: 'form-control' %>
+</p>
+<p>
+	<%= f.submit 'Submit', class: 'btn btn-primary' %>
+</p>
+<% end %>

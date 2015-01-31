@@ -4,6 +4,12 @@ module ApplicationHelper
     link_to user.username, main_app.profile_path(user.username), class: 'profile-link', style: "color: #{user.get_name_color}"
   end
 
+  def user_badge(user)
+    group = user.highest_group
+    return nil if !group
+    content_tag(:span, user.get_badge_text, class: 'badge', style: "color: #{user.get_color}; background-color: #{user.get_background_color}")
+  end
+
   def latest_post(topic)
     post = relevant_posts(topic).last
     text = "#{time_ago_in_words(post.created_at)} #{t("ago")}"

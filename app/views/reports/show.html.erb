@@ -1,0 +1,22 @@
+<div class='row'>
+	<div class='page-header'>
+		<% if !@report.closed %>
+		<%= link_to 'Close', report_close_path(@report), method: :put, class: 'btn btn-primary pull-right' %>
+		<% else %>
+		<%= link_to 'Reopen', report_open_path(@report), method: :put, class: 'btn btn-primary pull-right' %>
+		<% end %>
+		<h1>Reports <small>Report #<%= @report.id %></small></h1>
+	</div>
+	<p>
+		<label>Reason:</label>
+		<blockquote>
+			<%= @report.reason %>
+		</blockquote>
+	</p>
+	<p>
+		<label>Evidence/Additional Information:</label>
+		<blockquote>
+			<%= @report.evidence %>
+		</blockquote>
+	</p>
+</div>

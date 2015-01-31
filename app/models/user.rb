@@ -4,6 +4,8 @@ class User < ActiveRecord::Base
 
   validates :username, presence: true, length: { maximum: 16, minimum: 3 }, uniqueness: true
 
+  has_many :reports, class_name: 'Report', inverse_of: :reporter
+
   def forem_name
     username
   end
@@ -17,18 +19,24 @@ class User < ActiveRecord::Base
   end
 
   def highest_group
-    forem_groups.order(:priority).first
+    groups.order(:priority).first
   end
 
   def get_name_color
-    color ||= highest_group.color
+    group = highest_group
+    return '' if !highest_group
+    color || group.color
   end
 
   def get_badge_color
-    badge_color || highest_group.badge_color
+    group = highest_group
+    return '' if !highest_group
+    badge_color || group.badge_color
   end
 
   def get_badge_text
-    badge_text || highest_group.badge_text
+    group = highest_group
+    return '' if !highest_group
+    badge_text || group.badge_text
   end
 end
