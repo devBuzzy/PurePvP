@@ -15,7 +15,7 @@ gem 'redis'
 
 gem 'jbuilder', '2.2.6'
 
-group :production do
+group :production, :staging do
   gem 'passenger'
   gem 'pg'
 end

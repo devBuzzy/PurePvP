@@ -57,9 +57,9 @@
 						<td class='latest-post'>
 							<div style="text-align: right;">
 								<% user = relevant_posts(topic).last.user %>
-								<div style="margin-top: 2px; margin-left: 6px; "><%= avatar(user, :size => 36) %></div>
-								<div><%= profile_link(user) %></div>
-								<div><%= latest_post(topic) %></div>
+								<div class='pull-right' style="margin-top: 2px; margin-left: 6px; "><%= avatar(user, :size => 36) %></div>
+								<div class='started-by'><%= profile_link(user) %></div>
+								<div class='latest-post'><%= latest_post(topic) %></div>
 							</div>
 						</td>
 					</tr>

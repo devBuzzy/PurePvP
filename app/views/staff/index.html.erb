@@ -1,2 +1,21 @@
-<h1>Staff#index</h1>
-<p>Find me in app/views/staff/index.html.erb</p>
+<div class='row'>
+	<div class='page-header'>
+		<h1>Pure PvP Staff</h1>
+	</div>
+	<% @groups.each do |group| %>
+	<h1 style='color: <%= group.color %>'><strong><%= group.name %></strong><small><%= group.members.count %></small></h1>
+	<hr>
+	<div class='row'>
+		<% group.members.each do |member| %>
+		<div class='col-md-2'>
+			<div class="staff-member thumbnail">
+				<%= avatar(member, :size => 120) %>
+				<div class="caption">
+					<h4 align='center'><%= profile_link member %></h4>
+				</div>
+			</div>
+		</div>
+		<% end %>
+	</div>
+	<% end %>
+</div>
