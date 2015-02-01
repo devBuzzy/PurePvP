@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150131194124) do
+ActiveRecord::Schema.define(version: 20150201204156) do
 
   create_table "forem_categories", force: :cascade do |t|
     t.string   "name",                   null: false
@@ -40,6 +40,7 @@ ActiveRecord::Schema.define(version: 20150131194124) do
     t.string  "badge_text"
     t.string  "badge_color"
     t.integer "priority"
+    t.boolean "show_on_staff_page", default: false
   end
 
   add_index "forem_groups", ["name"], name: "index_forem_groups_on_name"

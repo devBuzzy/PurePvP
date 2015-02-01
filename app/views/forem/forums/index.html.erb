@@ -9,12 +9,12 @@
 		<h1>Latest Discussions</h1>
 		<hr>
 		<div id='topics_container'>
-			<table class='topics table-striped table' cellspacing='0'>
+			<table class='topics table-striped table topics-table' cellspacing='0'>
 				<thead>
 					<tr>
 						<th class="byline"><%= t('forem.topic.headings.topic') -%></th>
 						<th class="topic-stats text-center"><%= t('forem.topic.headings.stats') -%></th>
-						<th class="latest-post pull-right"><%= t('forem.topic.headings.latest') -%></th>
+						<th class="latest-post"><%= t('forem.topic.headings.latest') -%></th>
 					</tr>
 				</thead>
 				<tbody>
@@ -49,7 +49,7 @@
 								<%= link_to time_ago_in_words(topic.created_at) + ' ago', forem.forum_topic_path(topic.forum, topic) %>
 							</small>
 						</td>
-						<td class='views-count text-center'>
+						<td class='topic-stats text-center'>
 							<%= pluralize(relevant_posts(topic).count, 'reply') %>
 							<br>
 							<%= pluralize(topic.views_count, 'view') %>
@@ -57,9 +57,9 @@
 						<td class='latest-post'>
 							<div style="text-align: right;">
 								<% user = relevant_posts(topic).last.user %>
-								<div class='pull-right' style="margin-top: 2px; margin-left: 6px; "><%= avatar(user, :size => 36) %></div>
-								<div class='started-by'><%= profile_link(user) %></div>
-								<div class='latest-post'><%= latest_post(topic) %></div>
+								<div style="margin-top: 2px; margin-left: 6px; "><%= avatar(user, :size => 36) %></div>
+								<div><%= profile_link(user) %></div>
+								<div><%= latest_post(topic) %></div>
 							</div>
 						</td>
 					</tr>
