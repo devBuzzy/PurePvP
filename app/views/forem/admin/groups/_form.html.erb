@@ -9,7 +9,7 @@
 <br>
 <%= f.input :badge_text, input_html: { class: 'form-control' }  %>
 <br>
-<%= f.input :show_on_staff_page, input_html: { class: 'form-control' } %>
+<%= f.input :show_on_staff_page %>
 <br>
-<%= f.submit :class => "btn btn-primary" %>
+<%= f.submit :class => "btn btn-primary", as: :checkboxes %>
 <% end %>

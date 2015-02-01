@@ -14,7 +14,7 @@ Forem::Admin::GroupsController.class_eval do
 
   private
   def group_params
-    params.require(:group).permit(:name, :color, :badge_color, :badge_text, :priority)
+    params.require(:group).permit(:name, :color, :badge_color, :badge_text, :priority, :show_on_staff_page)
   end
 
 end
