@@ -1,0 +1,12 @@
+<div class='row'>
+	<div class='page-header'>
+		<%= link_to 'Delete', [:admin, @user], method: :delete, data: { confirm: "Are you sure?" }, class: 'btn btn-danger pull-right' %>
+		<h1>User Admin Panel<small> <%= @user.username %></small></h1>
+	</div>
+	<div class='col-md-2'>
+		<%= render '/forem/admin/base/side' %>
+	</div>
+	<div class='col-md-10'>
+		<%= render 'form' %>
+	</div>
+</div>

@@ -2,6 +2,7 @@
 <ul class="nav nav-pills nav-stacked">
 	<li role='presentation'><%= link_to t('forem.admin.forum.index'), forem.admin_forums_path %></li>
 	<li role='presentation'><%= link_to t('forem.admin.category.index'), forem.admin_categories_path %></li>
+	<li role='presentation'><%= link_to 'Manage Users', main_app.admin_users_path %></li>
 	<li role='presentation'><%= link_to t('forem.admin.group.index'), forem.admin_groups_path %></li>
 	<li role='presentation'><%= link_to t(:back_to_forums, :scope => 'forem.admin'), forem.root_path %></li>
 </ul>

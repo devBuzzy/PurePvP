@@ -2,9 +2,11 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
   :recoverable, :rememberable, :trackable, :validatable
 
-  validates :username, presence: true, length: { maximum: 16, minimum: 3 }, uniqueness: true
+  validates :username, presence: true, length: { maximum: 16 }, uniqueness: true
 
   has_many :reports, class_name: 'Report', inverse_of: :reporter
+
+  before_save :reset_colors
 
   def forem_name
     username
@@ -25,18 +27,36 @@ class User < ActiveRecord::Base
   def get_name_color
     group = highest_group
     return '' if !highest_group
-    color || group.color
+    return blank_or_return color ||= group.color
   end
 
   def get_badge_color
     group = highest_group
     return '' if !highest_group
-    badge_color || group.badge_color
+    blank_or_return badge_color ||= group.badge_color
   end
 
   def get_badge_text
     group = highest_group
     return '' if !highest_group
-    badge_text || group.badge_text
+    blank_or_return badge_text ||= group.badge_text
+  end
+
+  def blank_or_return(field)
+    return field.blank? ? nil : field
+  end
+
+  def reset_colors
+    puts "CALLED"
+    if badge_text.blank?
+      badge_text = nil
+      puts "SET TO NIL"
+    end
+    if badge_color.blank?
+      badge_color = nil
+    end
+    if color.blank?
+      color = nil
+    end
   end
 end

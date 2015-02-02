@@ -1,0 +1,29 @@
+<%= simple_form_for([:admin, @user]) do |f| %>
+<h2>General Information</h2>
+<hr>
+<%= f.input :username, input_html: { class: 'form-control' } %>
+<p class="help-block">User's latest Minecraft username, may change.</p>
+<%= f.input :email, input_html: { class: 'form-control' } %>
+<br>
+<%= f.input :uuid, input_html: { class: 'form-control' }  %>
+<p class="help-block">User's Mojang UUID, should not be changed.</p>
+<h2>Rank Information</h2>
+<hr>
+<%= f.input :rank, input_html: { class: 'form-control' }  %>
+<%= f.input :color, as: :minicolors, input_html: { class: 'form-control', data: { minicolors: {theme: :bootstrap, position: :right,}}} %>
+<p class="help-block">Overrides group name color.</p>
+<br>
+<%= f.input :badge_color, as: :minicolors, input_html: { class: 'form-control', data: { minicolors: {theme: :bootstrap, position: :right,}}} %>
+<p class="help-block">Overrides group badge color.</p>
+<br>
+<%= f.input :badge_text, input_html: { class: 'form-control' }  %>
+<p class="help-block">Overrides group text color.</p>
+<h2>Forem Settings</h2>
+<hr>
+<%= f.input :forem_admin %>
+<p class="help-block">Allows a user to access the forem admin panel.</p>
+<%= f.input :forem_auto_subscribe %>
+<p class="help-block">Specifies whether or not a user is auto subscribed to topics.</p>
+<br>
+<%= f.submit :class => "btn btn-primary" %>
+<% end %>

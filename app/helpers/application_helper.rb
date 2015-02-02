@@ -7,7 +7,7 @@ module ApplicationHelper
   def user_badge(user)
     group = user.highest_group
     return nil if !group
-    content_tag(:span, user.get_badge_text, class: 'badge', style: "color: #{user.get_color}; background-color: #{user.get_background_color}")
+    content_tag(:span, user.get_badge_text, class: 'badge', style: "color: #{user.get_name_color}; background-color: #{user.get_badge_color}")
   end
 
   def latest_post(topic)
