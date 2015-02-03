@@ -8,6 +8,19 @@ class User < ActiveRecord::Base
 
   before_save :reset_colors
 
+  def encounters
+    encounters = kills + deaths
+    encounters.sort_by(:timestamp).reverse
+  end
+
+  def kills
+    Death.where(:killer_uuid => self.uuid)
+  end
+
+  def deaths
+    Death.where(:victim_uuid => self.uuid)
+  end
+
   def forem_name
     username
   end
@@ -47,10 +60,8 @@ class User < ActiveRecord::Base
   end
 
   def reset_colors
-    puts "CALLED"
     if badge_text.blank?
       badge_text = nil
-      puts "SET TO NIL"
     end
     if badge_color.blank?
       badge_color = nil

@@ -11,7 +11,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150201204156) do
+ActiveRecord::Schema.define(version: 20150202181529) do
+
+  create_table "deaths", force: :cascade do |t|
+    t.integer "killer_uuid"
+    t.integer "victim_uuid"
+    t.string  "server_session_id"
+    t.string  "weapon"
+    t.time    "timestamp"
+  end
 
   create_table "forem_categories", force: :cascade do |t|
     t.string   "name",                   null: false

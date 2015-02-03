@@ -1,3 +1,43 @@
-<div class="page-header">
-	<h1><%= @user.username %></h1>
+<div class='row'>
+	<div class='page-header'>
+		<h1><strong><%= @user.username %></strong><small> Last seen <%= time_ago_in_words(@user.current_sign_in_at) %> ago </small></h1>
+	</div>
+	<div class='col-md-2'>
+		<div class'render' align='center'>
+			<%= image_tag "https://crafatar.com/renders/body/#{@user.uuid}?helm" %>
+		</div>
+		<div class='profile rank' align='center'>
+			<%= user_badge(@user) %>
+		</div>
+	</div>
+	<div class='col-md-10'>
+		<div class='row'>
+			<div class='col-md-3'>
+				<h1><%= @kills.count %><small> <%= "kill".pluralize(@kills.count) %></small></h1>
+			</div>
+			<div class='col-md-3'>
+				<h1><%= @deaths.count %><small> <%= "death".pluralize(@deaths.count) %></small></h1>
+			</div>
+			<div class='col-md-3'>
+				<h1><%= @kd %><small> K/D</small></h1>
+			</div>
+		</div>
+		<div class='row'>
+			<div role="tabpanel" class='player-tabs'>
+				<ul class="nav nav-tabs" role="tablist">
+					<li role="presentation" class="active"><a href="#stats" aria-controls="stats" role="tab" data-toggle="tab">Stats</a></li>
+					<li role="presentation"><a href="#recent" aria-controls="recent" role="tab" data-toggle="tab">Recent PvP</a></li>
+					<li role="presentation"><a href="#forums" aria-controls="forums" role="tab" data-toggle="tab">Recent Topics</a></li>
+					<li role="presentation"><a href="#punishments" aria-controls="punishments" role="tab" data-toggle="tab">Punishments</a></li>
+				</ul>
+
+				<div class="tab-content">
+					<div role="tabpanel" class="tab-pane active" id="stats">Player stats</div>
+					<div role="tabpanel" class="tab-pane" id="recent">Recent pvp encounters</div>
+					<div role="tabpanel" class="tab-pane" id="forums">Forum stats</div>
+					<div role="tabpanel" class="tab-pane" id="punishments">Player punishments</div>
+				</div>
+			</div>
+		</div>
+	</div>
 </div>
