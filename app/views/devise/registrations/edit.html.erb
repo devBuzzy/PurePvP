@@ -14,11 +14,6 @@
       </p>
 
       <p>
-        <label class="text-muted">Username</label>
-        <%= f.text_field :username, autocomplete: "off", class: 'form-control' %> 
-      </p>
-
-      <p>
         <label class="text-muted">New Password</label>
         <%= f.password_field :password, autocomplete: "off", class: 'form-control' %>
       </p>
@@ -28,11 +23,6 @@
       </p>
     </div>
     <div class="col-md-6">
-      <p>
-        <label class="text-muted">UUID</label>
-        <%= f.text_field :uuid, class: 'form-control' %>
-      </p>
-
       <p>
         <label class="text-muted">Current Password (Confirm Changes)</label>
         <%= f.password_field :current_password, class: 'form-control' %>

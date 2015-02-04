@@ -8,6 +8,8 @@ class User < ActiveRecord::Base
 
   before_save :reset_colors
 
+  serialize :username_history
+
   def encounters
     encounters = kills + deaths
     encounters.sort_by(:timestamp).reverse
