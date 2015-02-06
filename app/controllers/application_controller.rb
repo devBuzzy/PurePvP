@@ -19,6 +19,12 @@ class ApplicationController < ActionController::Base
     else
       @kd = @kills.count / @deaths.count
     end
+
+    @gamemodes = {'Factions' => 'factions', 'Kit PvP' => 'kit-pvp'}
+
+    @punishments = Punishment.where(:uuid => @user.uuid)
+
+    @topics = @user.forem_topics.limit(5)
   end
 
   # Helper methods

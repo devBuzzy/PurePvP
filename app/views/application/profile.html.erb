@@ -32,7 +32,27 @@
 				</ul>
 
 				<div class="tab-content">
-					<div role="tabpanel" class="tab-pane active" id="stats">Player stats</div>
+					<div role="tabpanel" class="tab-pane active game-stats" id="stats">
+						<% @gamemodes.each do |key, value| %>
+						<h2><%= key %></h2>
+						<hr>
+						<div class='row'>
+							<% kills = @kills.for_gamemode(value) %>
+							<% deaths = @deaths.for_gamemode(value) %>
+							<div class='col-md-4'>
+								<h1><%= kills.count %><small> <%= "kill".pluralize(@kills.count) %></small></h1>
+							</div>
+							<div class='col-md-4'>
+								
+								<h1><%= deaths.count %><small> <%= "death".pluralize(deaths.count) %></small></h1>
+							</div>
+							<div class='col-md-4'>
+								<% kd = kd_for(kills.count, deaths.count) %>
+								<h1><%= kd %><small> K/D</small></h1>
+							</div>
+						</div>
+						<% end %>
+					</div>
 					<div role="tabpanel" class="tab-pane" id="recent">Recent pvp encounters</div>
 					<div role="tabpanel" class="tab-pane" id="forums">Forum stats</div>
 					<div role="tabpanel" class="tab-pane" id="punishments">Player punishments</div>
