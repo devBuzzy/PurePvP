@@ -2,13 +2,17 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
   :recoverable, :rememberable, :trackable, :validatable
 
-  validates :username, presence: true, length: { maximum: 16 }, uniqueness: true
+  # validates :username, presence: true, length: { maximum: 16 }, uniqueness: true
 
   has_many :reports, class_name: 'Report', inverse_of: :reporter
 
   before_save :reset_colors
 
   serialize :username_history
+
+  def get_username
+    return MinecraftUsername.where(:uuid => uuid).first
+  end
 
   def encounters
     encounters = kills + deaths

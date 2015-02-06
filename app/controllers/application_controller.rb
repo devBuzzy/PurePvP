@@ -1,4 +1,5 @@
 class ApplicationController < ActionController::Base
+  
   protect_from_forgery with: :exception
   before_action :configure_permitted_parameters, if: :devise_controller?
 
@@ -6,7 +7,7 @@ class ApplicationController < ActionController::Base
   # may not exist for this user, but is referred to as
   # a @user anyway.
   def profile
-    @user = User.find_by(:username => params[:username])
+    @user = User.find_by(:uuid => User.get_username)
 
     @kills = @user.kills
     @deaths = @user.deaths
@@ -22,9 +23,10 @@ class ApplicationController < ActionController::Base
 
     @gamemodes = {'Factions' => 'factions', 'Kit PvP' => 'kit-pvp'}
 
-    @punishments = Punishment.where(:uuid => @user.uuid)
+    @punishments = Punishment.where(:punished => @user.uuid)
 
-    @topics = @user.forem_topics.limit(5)
+    @topics = @user.forem_topics
+    @posts = @user.forem_posts
   end
 
   # Helper methods

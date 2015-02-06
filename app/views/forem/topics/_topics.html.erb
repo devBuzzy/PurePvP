@@ -1,0 +1,59 @@
+<div id='topics_container'>
+  <table class='topics table-striped table topics-table' cellspacing='0'>
+    <thead>
+      <tr>
+        <th class="byline"><%= t('forem.topic.headings.topic') -%></th>
+        <th class="topic-stats text-center"><%= t('forem.topic.headings.stats') -%></th>
+        <th class="latest-post"><%= t('forem.topic.headings.latest') -%></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% topics.each do |topic| %>
+      <tr class="topic <%= cycle('odd', 'even') %> <%= topic.locked? ? 'locked' : 'unlocked' %>">
+        <td class='byline'>
+          <%= new_since_last_view_text(topic) %>
+          <div class='subject'>
+            <%= link_to forem_emojify(topic.subject), forem.forum_topic_path(topic.forum, topic) %>
+            <% if topic.locked? %>
+            <span class='lock icon'></span>
+            <% end %>
+            <% if topic.pinned? %>
+            <span class='pin icon'></span>
+            <% end %>
+            <% if topic.hidden? %>
+            <span class='hidden icon'></span>
+            <% end %>
+            <% if forem_user && view = topic.view_for(forem_user) %>
+            <% if topic.posts.exists?(["created_at > ?", view.updated_at]) %>
+            <span class='new_posts icon'>new</span>
+            <% end %>
+            <% end %>
+          </div>
+          <small class='post-ribbon'>
+            <i class="fa fa-user"></i>
+            <% creator = relevant_posts(topic).first.user %>
+            <%= profile_link(creator) %>
+            <i class="fa fa-folder"></i>
+            <%= link_to topic.forum.name, forem.forum_path(topic.forum) %>
+            <i class="fa fa-calendar-o"></i>
+            <%= link_to time_ago_in_words(topic.created_at) + ' ago', forem.forum_topic_path(topic.forum, topic) %>
+          </small>
+        </td>
+        <td class='topic-stats text-center'>
+          <%= pluralize(relevant_posts(topic).count, 'reply') %>
+          <br>
+          <%= pluralize(topic.views_count, 'view') %>
+        </td>
+        <td class='latest-post'>
+          <div style="text-align: right;">
+            <% user = relevant_posts(topic).last.user %>
+            <div class='pull-right' style="margin-top: 2px; margin-left: 6px; "><%= avatar(user, :size => 36) %></div>
+            <div class='started-by'><%= profile_link(user) %></div>
+            <div class='latest-post'><%= latest_post(topic) %></div>
+          </div>
+        </td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

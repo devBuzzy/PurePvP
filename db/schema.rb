@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150206004922) do
+ActiveRecord::Schema.define(version: 20150206033102) do
 
   create_table "deaths", force: :cascade do |t|
     t.integer "killer_uuid"
@@ -124,9 +124,15 @@ ActiveRecord::Schema.define(version: 20150206004922) do
   add_index "forem_views", ["user_id"], name: "index_forem_views_on_user_id"
   add_index "forem_views", ["viewable_id"], name: "index_forem_views_on_viewable_id"
 
+  create_table "minecraft_usernames", force: :cascade do |t|
+    t.string   "username"
+    t.string   "uuid"
+    t.datetime "created_at"
+  end
+
   create_table "punishments", force: :cascade do |t|
     t.string "reason"
-    t.string "type"
+    t.string "punishment_type"
     t.time   "expires_at"
     t.time   "punished_at"
     t.string "punisher"

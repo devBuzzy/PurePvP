@@ -26,8 +26,8 @@
 			<div role="tabpanel" class='player-tabs'>
 				<ul class="nav nav-tabs" role="tablist">
 					<li role="presentation" class="active"><a href="#stats" aria-controls="stats" role="tab" data-toggle="tab">Stats</a></li>
-					<li role="presentation"><a href="#recent" aria-controls="recent" role="tab" data-toggle="tab">Recent PvP</a></li>
-					<li role="presentation"><a href="#forums" aria-controls="forums" role="tab" data-toggle="tab">Recent Topics</a></li>
+					<li role="presentation"><a href="#recent" aria-controls="recent" role="tab" data-toggle="tab">PvP</a></li>
+					<li role="presentation"><a href="#forums" aria-controls="forums" role="tab" data-toggle="tab">Forum Stats</a></li>
 					<li role="presentation"><a href="#punishments" aria-controls="punishments" role="tab" data-toggle="tab">Punishments</a></li>
 				</ul>
 
@@ -53,9 +53,58 @@
 						</div>
 						<% end %>
 					</div>
-					<div role="tabpanel" class="tab-pane" id="recent">Recent pvp encounters</div>
-					<div role="tabpanel" class="tab-pane" id="forums">Forum stats</div>
-					<div role="tabpanel" class="tab-pane" id="punishments">Player punishments</div>
+					<div role="tabpanel" class="tab-pane" id="recent">
+						<div class='row'>
+							<div class='col-md-6'>
+								<% @recent.each do |enc| %>
+									
+								<% end %>
+							</div>
+							<div class='col-md-6'>
+							</div>
+						</div>
+					</div>
+					<div role="tabpanel" class="tab-pane" id="forums">
+						<div class='row'>
+							<div class='col-md-3'>
+
+								<h1><%= @topics.count %><small> <%= "topic".pluralize(@topics.count) %></small></h1>
+							</div>
+							<div class='col-md-3'>
+								<h1><%= @posts.count %><small> <%= "reply".pluralize(@posts.count) %></small></h1>
+							</div>
+						</div>
+					</div>
+					<div role="tabpanel" class="tab-pane" id="punishments">
+						<% if @punishments.any? %>
+						<table class='table table-striped'>
+							<thead>
+								<tr>
+									<th>#</th>
+									<th>Punisher</th>
+									<th>Punished</th>
+									<th>Date</th>
+									<th>Type</th>
+									<th>Expires</th>
+								</tr>
+							</thead>
+							<tbody>
+								<% @punishments.each do |punishment| %>
+								<tr>
+									<td><%= punishment.id %></td>
+									<td><%= MinecraftUsername.for_uuid(punishment.punisher) %></td>
+									<td><%= MinecraftUsername.for_uuid(punishment.punished) %></td>
+									<td><%= time_ago_in_words(punishment.punished_at) %></td>
+									<td><%= punishment.punishment_type %></td>
+									<td><%= expires(punishment) %></td>
+								</tr>
+								<% end %>
+							</tbody>
+						</table>
+						<% else %>
+						<p class='text-muted' align='center' style='margin-top: 15px;'>No punishments found.</p>
+						<% end %>
+					</div>
 				</div>
 			</div>
 		</div>
