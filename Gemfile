@@ -12,6 +12,7 @@ gem 'forem', :github => "radar/forem", :branch => "rails4"
 gem 'jquery-minicolors-rails'
 gem 'kaminari'
 gem 'redis'
+gem 'faker'
 
 gem 'jbuilder', '2.2.6'
 
@@ -31,7 +32,6 @@ group :development, :test do
   gem 'web-console', '~> 2.0'
   gem 'rspec-rails'
   gem 'factory_girl_rails'
-  gem 'faker'
 end
 
 group :test do
