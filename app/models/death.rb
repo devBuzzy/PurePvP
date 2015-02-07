@@ -13,4 +13,12 @@ class Death < ActiveRecord::Base
       where(:gamemode => gamemode)
     end
   end 
+
+  def killer_username
+    MinecraftUsername.for_uuid(killer_uuid).username
+  end
+
+  def victim_username
+    MinecraftUsername.for_uuid(victim_uuid).username
+  end
 end

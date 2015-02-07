@@ -7,11 +7,12 @@ class ApplicationController < ActionController::Base
   # may not exist for this user, but is referred to as
   # a @user anyway.
   def profile
-    @user = User.find_by(:uuid => User.get_username)
+    @user = MinecraftUsername.for_user(params[:username])
 
     @kills = @user.kills
     @deaths = @user.deaths
 
+    puts @kills
     @encounters = @kills + @deaths
     @encounters.sort_by(&:timestamp).reverse
 

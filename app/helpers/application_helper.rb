@@ -1,7 +1,12 @@
 module ApplicationHelper
 
   def profile_link(user)
-    link_to user.username, main_app.profile_path(user.username), class: 'profile-link', style: "color: #{user.get_name_color}"
+    username = user
+    is_user = user.class.name == 'User'
+    if is_user
+      username = user.username
+    end
+    link_to username, main_app.profile_path(username), class: 'profile-link', style: "color: #{is_user ? user.get_name_color : ''}"
   end
 
   def user_badge(user)
@@ -30,5 +35,9 @@ module ApplicationHelper
       end
     end
     return active ? 'active' : ''
+  end
+
+  def timestamp(time)
+    time ? time.strftime("%l:%M %p %B %d, %Y") : ''
   end
 end

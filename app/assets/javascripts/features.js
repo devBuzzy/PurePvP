@@ -1,5 +1,5 @@
 $(function() {
-	$('[data-toggle="tooltip"]').tooltip({'placement': 'top', 'container': 'body'});
+	$('[data-toggle="tooltip"]').tooltip({'placement': 'top'});
 	$("#post-content").markdown({
 		autofocus:false,
 		iconlibrary: "fa",

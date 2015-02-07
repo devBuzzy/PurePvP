@@ -1,5 +1,11 @@
 class MinecraftUsername < ActiveRecord::Base
-  def for_uuid(uuid)
-    where(:uuid => uuid).first ||= User.where(:uuid => uuid).first
+  class << self
+    def for_uuid(uuid)
+      where(:uuid => uuid).first
+    end
+
+    def for_user(username)
+      User.where(:uuid => where(:username => username).first.uuid).first
+    end
   end
 end

@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-
   # Forem Engine
   mount Forem::Engine, :at => '/forums'
 
@@ -15,6 +14,8 @@ Rails.application.routes.draw do
   end
 
   resources :servers
+
+  resources :punishments
 
   # Information
 

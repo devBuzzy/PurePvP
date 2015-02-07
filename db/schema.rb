@@ -11,15 +11,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150206033102) do
+ActiveRecord::Schema.define(version: 20150207060508) do
 
   create_table "deaths", force: :cascade do |t|
-    t.integer "killer_uuid"
-    t.integer "victim_uuid"
-    t.string  "server_session_id"
-    t.string  "weapon"
-    t.time    "timestamp"
-    t.string  "gamemode"
+    t.string "killer_uuid"
+    t.string "victim_uuid"
+    t.string "server_session_id"
+    t.string "weapon"
+    t.time   "timestamp"
+    t.string "gamemode"
   end
 
   create_table "forem_categories", force: :cascade do |t|
@@ -125,10 +125,11 @@ ActiveRecord::Schema.define(version: 20150206033102) do
   add_index "forem_views", ["viewable_id"], name: "index_forem_views_on_viewable_id"
 
   create_table "minecraft_usernames", force: :cascade do |t|
-    t.string   "username"
-    t.string   "uuid"
-    t.datetime "created_at"
+    t.string "username"
+    t.string "uuid"
   end
+
+  add_index "minecraft_usernames", ["uuid"], name: "index_minecraft_usernames_on_uuid", unique: true
 
   create_table "punishments", force: :cascade do |t|
     t.string "reason"
@@ -173,7 +174,6 @@ ActiveRecord::Schema.define(version: 20150206033102) do
     t.boolean  "forem_admin",            default: false
     t.string   "forem_state",            default: "pending_review"
     t.boolean  "forem_auto_subscribe",   default: false
-    t.string   "username"
     t.string   "uuid"
     t.string   "rank"
     t.time     "first_join"
