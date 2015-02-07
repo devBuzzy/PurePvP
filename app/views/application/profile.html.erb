@@ -55,6 +55,7 @@
 					</div>
 					<div role="tabpanel" class="tab-pane fade" id="recent">
 						<div class='row'>
+							<% if @encounters.any? %>
 							<div class='col-md-6'>
 								<% @encounters.each_with_index do |enc, i| %>
 								<p>
@@ -71,6 +72,9 @@
 								<% end %>
 								<% end %>
 							</div>
+							<% else %>
+							<p class='text-muted no-kills' align='center'>No recent PvP fights found.</p>
+							<% end %>
 						</div>
 					</div>
 					<div role="tabpanel" class="tab-pane fade" id="forums">

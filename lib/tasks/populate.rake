@@ -26,7 +26,7 @@ namespace :db do
         Death.create!(:victim_uuid => user.uuid, 
           :killer_uuid => @punisher.uuid,
           :server_session_id => 1, :weapon => "Sword", 
-          :timestamp => Time.now, :gamemode => "Factions")
+          :timestamp => Time.now, :gamemode => "factions")
       end
       puts "Created user #{username}."
     end
