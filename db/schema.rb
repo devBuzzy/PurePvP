@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150207173306) do
+ActiveRecord::Schema.define(version: 20150207175648) do
 
   create_table "deaths", force: :cascade do |t|
     t.string "killer_uuid"
@@ -175,7 +175,6 @@ ActiveRecord::Schema.define(version: 20150207173306) do
     t.string   "forem_state",            default: "pending_review"
     t.boolean  "forem_auto_subscribe",   default: false
     t.string   "uuid"
-    t.string   "rank"
     t.time     "first_join"
     t.time     "last_join"
     t.time     "last_seen"

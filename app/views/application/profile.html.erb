@@ -54,13 +54,15 @@
 						<% end %>
 					</div>
 					<div role="tabpanel" class="tab-pane fade" id="recent">
-						<div class='row'>
+						<div class='row encounters'>
 							<% if @encounters.any? %>
 							<div class='col-md-6'>
 								<% @encounters.each_with_index do |enc, i| %>
-								<p>
+								<p>	
+									<%= image_tag "https://crafatar.com/avatars/#{enc.killer_uuid}?size=16", alt: 'Avatar', class: 'kill-avatar' %>
 									<span><%= profile_link enc.killer_username %></span>
 									<span><small> killed </small></span>
+									<%= image_tag "https://crafatar.com/avatars/#{enc.victim_uuid}?size=16", alt: 'Avatar', class: 'kill-avatar' %>
 									<span><%= profile_link enc.victim_username %></span>
 									<span><small data-toggle='tooltip' title='<%= timestamp(enc.timestamp) %>'><%= time_ago_in_words(enc.timestamp) %> ago</small></span>
 								</p>
