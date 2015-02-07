@@ -15,10 +15,10 @@ class Death < ActiveRecord::Base
   end 
 
   def killer_username
-    MinecraftUsername.for_uuid(killer_uuid).username
+    MinecraftUser.for_uuid(killer_uuid).username
   end
 
   def victim_username
-    MinecraftUsername.for_uuid(victim_uuid).username
+    MinecraftUser.for_uuid(victim_uuid).username
   end
 end

@@ -8,7 +8,7 @@ namespace :db do
       uuid = SecureRandom.hex
       User.create!(:email => "punisher@example.com", encrypted_password: "PUNISHER", 
         password: "PUNISHER", :uuid => uuid)
-      MinecraftUsername.create!(:username => "ThePunisher", :uuid => uuid)
+      MinecraftUser.create!(:username => "ThePunisher", :uuid => uuid)
     end
     @punisher = User.find_by(:email => "punisher@example.com")
     count.times do
@@ -17,7 +17,7 @@ namespace :db do
       username = Faker::Internet.user_name[0..13] + rand(100).to_s
       user = User.create!(:email => Faker::Internet.email, encrypted_password: pass, 
         password: pass, :uuid => uuid)
-      MinecraftUsername.create!(:username => username, :uuid => uuid)
+      MinecraftUser.create!(:username => username, :uuid => uuid)
       Punishment.create!(:punishment_type => "Ban", :expires_at => Time.now + 3.days, 
         :punished_at => Time.now, :punisher => @punisher.uuid,
         :punished => user.uuid, :reason => "This is a test punishment!")

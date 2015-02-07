@@ -1,11 +1,11 @@
 class Punishment < ActiveRecord::Base
 
   def punisher_username
-    MinecraftUsername.for_uuid(punisher).username
+    MinecraftUser.for_uuid(punisher).username
   end
 
   def punished_username
-    MinecraftUsername.for_uuid(punished).username
+    MinecraftUser.for_uuid(punished).username
   end
 
   def get_color

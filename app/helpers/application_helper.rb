@@ -10,6 +10,7 @@ module ApplicationHelper
   end
 
   def user_badge(user)
+    return if user.class.name != 'User'
     group = user.highest_group
     return nil if !group
     content_tag(:span, user.get_badge_text, class: 'badge', style: "color: #{user.get_name_color}; background-color: #{user.get_badge_color}")

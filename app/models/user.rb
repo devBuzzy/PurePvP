@@ -9,7 +9,7 @@ class User < ActiveRecord::Base
   serialize :username_history
 
   def username
-    return MinecraftUsername.where(:uuid => uuid).first.username
+    return MinecraftUser.where(:uuid => uuid).first.username
   end
 
   def encounters

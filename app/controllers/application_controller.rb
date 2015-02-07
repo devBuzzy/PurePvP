@@ -1,5 +1,5 @@
 class ApplicationController < ActionController::Base
-  
+
   protect_from_forgery with: :exception
   before_action :configure_permitted_parameters, if: :devise_controller?
 
@@ -7,12 +7,20 @@ class ApplicationController < ActionController::Base
   # may not exist for this user, but is referred to as
   # a @user anyway.
   def profile
-    @user = MinecraftUsername.for_user(params[:username])
+    @user = MinecraftUser.for_user(params[:username])
+
+
+    if !@user
+      @user = MinecraftUser.where(:username => params[:username]).first
+    end
+
+    if !@user
+      raise ActiveRecord::RecordNotFound
+    end
 
     @kills = @user.kills
     @deaths = @user.deaths
 
-    puts @kills
     @encounters = @kills + @deaths
     @encounters.sort_by(&:timestamp).reverse
 
@@ -26,8 +34,13 @@ class ApplicationController < ActionController::Base
 
     @punishments = Punishment.where(:punished => @user.uuid)
 
-    @topics = @user.forem_topics
-    @posts = @user.forem_posts
+    if @user.class.name == 'User'
+      @topics = @user.forem_topics
+      @posts = @user.forem_posts
+    else
+      @topics = []
+      @posts = []
+    end
   end
 
   # Helper methods
