@@ -5,6 +5,12 @@ module ApplicationHelper
     is_user = user.class.name == 'User'
     if is_user
       username = user.username
+    else
+      user_class = MinecraftUser.for_user(user)
+      if user_class
+        user = user_class
+        is_user = true
+      end
     end
     link_to username, main_app.profile_path(username), class: 'profile-link', style: "color: #{is_user ? user.get_name_color : ''}"
   end

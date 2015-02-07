@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150207175648) do
+ActiveRecord::Schema.define(version: 20150207182912) do
 
   create_table "deaths", force: :cascade do |t|
     t.string "killer_uuid"
@@ -21,6 +21,9 @@ ActiveRecord::Schema.define(version: 20150207175648) do
     t.time   "timestamp"
     t.string "gamemode"
   end
+
+  add_index "deaths", ["killer_uuid"], name: "index_deaths_on_killer_uuid"
+  add_index "deaths", ["victim_uuid"], name: "index_deaths_on_victim_uuid"
 
   create_table "forem_categories", force: :cascade do |t|
     t.string   "name",                   null: false

@@ -1,0 +1,32 @@
+<div class='row'>
+	<div class='page-header'>
+		<h1>Pure PvP Stats <small>Compare your skills!</small></h1>
+	</div>
+
+	<%= paginate @users %>
+	<table class='table table-striped'>
+		<thead>
+			<th>Place</th>
+			<th>Username</th>
+			<th>Kills</th>
+			<th>Deaths</th>
+			<th>K/D Ratio</th>
+			<th>Online Time</th>
+		</thead>
+		<tbody>
+			<% @users.each_with_index do |user, index| %>
+			<tr>
+				<td><%= (@users.current_page - 1) * 20 + index + 1 %></td>
+				<td><%= profile_link user.username %></td>
+				<td><%= user.kills.count %></td>
+				<td><%= user.deaths.count %></td>
+				<td><%= kd_for(user.kills.count, user.deaths.count) %></td>
+				<td>NYI</td>
+			</tr>
+			<% end %>
+		</tbody>
+	</table>
+
+	<%= paginate @users %>
+
+</div>
