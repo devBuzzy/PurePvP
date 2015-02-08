@@ -11,9 +11,10 @@ Rails.application.routes.draw do
   # Admin control panel
   namespace :admin do
     resources :users
+    resources :server_families
   end
 
-  resources :servers
+  resources :servers, only: [:index, :show]
 
   resources :punishments
 

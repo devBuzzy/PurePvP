@@ -1,0 +1,9 @@
+<%= simple_form_for([:admin, @family]) do |f| %>
+<%= f.input :gamemode, input_html: { class: 'form-control' } %>
+<p class="help-block">The name of the servers in the database.</p>
+<%= f.input :display, input_html: { class: 'form-control' } %>
+<p class="help-block">The text to display as the name of the family.</p>
+<%= f.input :priority, input_html: { class: 'form-control' } %>
+<p class="help-block">The order to display the server families.</p>
+<%= f.submit :class => "btn btn-primary" %>
+<% end %>

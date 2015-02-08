@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150207182912) do
+ActiveRecord::Schema.define(version: 20150207224903) do
 
   create_table "deaths", force: :cascade do |t|
     t.string "killer_uuid"
@@ -150,6 +150,12 @@ ActiveRecord::Schema.define(version: 20150207182912) do
     t.boolean  "closed"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "server_families", force: :cascade do |t|
+    t.string  "display"
+    t.string  "gamemode"
+    t.integer "priority"
   end
 
   create_table "servers", force: :cascade do |t|
