@@ -1,7 +1,6 @@
 FactoryGirl.define do
-  factory :minecraft_username do
+  factory :minecraft_user do
     username "MyString"
-uuid "MyString"
+    uuid "MyString"
   end
-
 end

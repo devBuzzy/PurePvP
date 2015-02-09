@@ -5,5 +5,4 @@ FactoryGirl.define do
     port 1
     last_ping "2015-01-27 19:42:06"
   end
-
 end
