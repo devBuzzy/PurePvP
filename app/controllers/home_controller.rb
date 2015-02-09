@@ -2,9 +2,12 @@ class HomeController < ApplicationController
   def index
     category = Forem::Category.first
     if category
-      return if !category.forums.first
-      @announcements = category.forums.first.topics.limit(3)
+      forum = category.forums.first
+      if forum
+        return @announcements = forum.topics.limit(3)
+      end
     end
+    return []
   end
 
   def terms
